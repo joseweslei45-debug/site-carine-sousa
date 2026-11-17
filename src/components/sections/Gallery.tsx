@@ -1,6 +1,8 @@
 import { useCallback, useEffect, useState } from 'react'
 import { ChevronLeft, ChevronRight, Expand, X } from 'lucide-react'
-import { gallery } from '../../data/site'
+import { contact, gallery } from '../../data/site'
+import { Button } from '../ui/Button'
+import { InstagramIcon } from '../ui/icons'
 import { useOverlay } from '../../hooks/useOverlay'
 import { Reveal } from '../ui/Reveal'
 import { SectionHeading } from '../ui/SectionHeading'
@@ -68,6 +70,14 @@ export function Gallery() {
             </li>
           ))}
         </ul>
+
+        {contact.instagramUrl && (
+          <Reveal className="mt-10 flex justify-center">
+            <Button href={contact.instagramUrl} external variant="outline" icon={<InstagramIcon className="h-3.5 w-3.5" />}>
+              Veja mais no Instagram
+            </Button>
+          </Reveal>
+        )}
 
         {hasIllustrative && (
           <p className="mt-6 text-center text-[0.72rem] text-cocoa-soft">

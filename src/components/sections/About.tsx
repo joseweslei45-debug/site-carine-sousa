@@ -11,12 +11,10 @@ export function About() {
         <Reveal className="relative order-2 lg:order-1 lg:col-span-5">
           <div className="relative mx-auto max-w-sm lg:max-w-none">
             <div aria-hidden className="absolute -top-5 -left-5 h-full w-full border border-gold/40" />
-            <SmartImage
-              src={images.about.src}
-              alt={images.about.alt}
-              wrapperClassName="relative aspect-[3/4]"
-              className="sepia-[0.25]"
-            />
+            <SmartImage src={images.about.src} alt={images.about.alt} wrapperClassName="relative aspect-[3/4]" className="object-[50%_20%]" />
+            <div className="absolute -right-4 -bottom-8 w-[38%] border-[6px] border-ivory shadow-[0_25px_50px_-20px_rgba(89,70,63,0.35)] sm:-right-8">
+              <SmartImage src={images.aboutDetail.src} alt={images.aboutDetail.alt} wrapperClassName="aspect-[3/4]" />
+            </div>
           </div>
         </Reveal>
 

@@ -1,5 +1,7 @@
 import { CalendarCheck, CalendarClock, GraduationCap } from 'lucide-react'
-import { courses, whatsappLink, type Course } from '../../data/site'
+import { classPhotos, contact, courses, whatsappLink, type Course } from '../../data/site'
+import { SmartImage } from '../ui/SmartImage'
+import { InstagramIcon } from '../ui/icons'
 import { Button } from '../ui/Button'
 import { Reveal } from '../ui/Reveal'
 import { SectionHeading } from '../ui/SectionHeading'
@@ -54,6 +56,33 @@ export function Courses() {
             </li>
           ))}
         </ul>
+
+        {classPhotos.length > 0 && (
+          <div className="mt-20">
+            <Reveal className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+              <div>
+                <p className="eyebrow">Turmas</p>
+                <h3 className="display mt-3 text-3xl sm:text-4xl">
+                  Alunas <em className="font-normal italic text-gold">formadas</em>
+                </h3>
+              </div>
+              {contact.instagramUrl && (
+                <Button href={contact.instagramUrl} external variant="ghost" className="self-start sm:self-auto" icon={<InstagramIcon className="h-3.5 w-3.5" />}>
+                  Acompanhe as turmas
+                </Button>
+              )}
+            </Reveal>
+            <ul className="mt-8 grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
+              {classPhotos.map((p, i) => (
+                <li key={p.src}>
+                  <Reveal delay={i * 80}>
+                    <SmartImage src={p.thumb} alt={p.alt} wrapperClassName="aspect-[3/4] rounded-2xl" />
+                  </Reveal>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
       </div>
     </section>
   )

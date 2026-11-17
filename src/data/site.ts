@@ -9,6 +9,13 @@
 const unsplash = (id: string, w = 1200) =>
   `https://images.unsplash.com/photo-${id}?w=${w}&q=80&auto=format&fit=crop`
 
+/**
+ * Fotos reais do Instagram da Carine (@carinesousa.clinic.academy),
+ * otimizadas em /public/images/ig. `small` usa a versão de 700px.
+ */
+export const ig = (name: string, small = false) =>
+  `${import.meta.env.BASE_URL}images/ig/${name}${small ? '-sm' : ''}.webp`
+
 // ------------------------------------------------------------
 // MARCA E CONTATO
 // ------------------------------------------------------------
@@ -29,7 +36,8 @@ export const contact = {
    * Instagram — cole aqui o link do perfil, ex.: 'https://instagram.com/seuperfil'.
    * Enquanto estiver vazio, o ícone não é exibido (para não haver link quebrado).
    */
-  instagramUrl: '',
+  instagramUrl: 'https://www.instagram.com/carinesousa.clinic.academy/',
+  instagramHandle: '@carinesousa.clinic.academy',
   address: {
     street: 'Tv. Tiradentes, 201',
     district: 'Centro',
@@ -66,18 +74,20 @@ export const navLinks = [
 // ------------------------------------------------------------
 export const images = {
   hero: {
-    src: unsplash('1637851497145-0faa2e456081', 1400),
-    alt: 'Rosto feminino com sobrancelhas definidas e pele natural, em luz suave',
+    src: ig('sobrancelha-a2'),
+    alt: 'Cliente com sobrancelhas definidas e naturais após atendimento com Carine Sousa',
   },
   heroDetail: {
-    src: unsplash('1516220362602-dba5272034e7', 600),
-    alt: 'Detalhe de sobrancelha e olhar em close-up',
+    src: ig('labial-2', true),
+    alt: 'Detalhe de micropigmentação labial com cor vermelha',
   },
   about: {
-    // ➜ Troque por uma foto profissional da Carine.
-    src: unsplash('1777521778743-d152c0404e32', 1000),
-    alt: 'Detalhe editorial de sobrancelha e cílios em close-up',
-    isPlaceholder: true,
+    src: ig('carine-atendimento'),
+    alt: 'Carine Sousa de jaleco branco, segurando um equipamento de estética',
+  },
+  aboutDetail: {
+    src: ig('studio', true),
+    alt: 'Parede do estúdio Carine Sousa com o logotipo iluminado',
   },
 }
 
@@ -109,7 +119,7 @@ export const services: Service[] = [
       'Desenho personalizado antes da pigmentação',
       'Orientações de cuidados após o procedimento',
     ],
-    image: { src: unsplash('1534143826428-81fc61582afd', 900), alt: 'Close-up de sobrancelhas definidas em dois rostos femininos' },
+    image: { src: ig('sobrancelha-b1', true), alt: 'Sobrancelhas com micropigmentação nas técnicas shadow line e fio a fio' },
   },
   {
     id: 'design-sobrancelhas',
@@ -122,7 +132,7 @@ export const services: Service[] = [
       'Modelagem respeitando seus traços',
       'Atendimento com calma e atenção aos detalhes',
     ],
-    image: { src: unsplash('1547078902-2911dfaaa53a', 900), alt: 'Mulher com sobrancelhas bem desenhadas olhando para cima' },
+    image: { src: ig('sobrancelha-a1', true), alt: 'Cliente com sobrancelhas desenhadas e marcantes' },
   },
   {
     id: 'limpeza-de-pele',
@@ -166,21 +176,32 @@ export type GalleryItem = {
   illustrative: boolean
 }
 
-const g = (id: string, alt: string, caption: string): GalleryItem => ({
-  src: unsplash(id, 1600),
-  thumb: unsplash(id, 700),
+/** Foto real do Instagram da Carine (sem selo de ilustrativa). */
+const real = (name: string, alt: string, caption: string): GalleryItem => ({
+  src: ig(name),
+  thumb: ig(name, true),
   alt,
   caption,
-  illustrative: true,
+  illustrative: false,
 })
 
 export const gallery: GalleryItem[] = [
-  g('1519415387722-a1c3bbef716c', 'Modelagem de sobrancelha com linha', 'Design de sobrancelhas'),
-  g('1777521778743-d152c0404e32', 'Detalhe de sobrancelha e cílios em preto e branco', 'Detalhe do olhar'),
-  g('1761718209708-9ab9ba1c7252', 'Cliente relaxando durante cuidado facial', 'Estética facial'),
-  g('1516220362602-dba5272034e7', 'Close-up de sobrancelha e olho', 'Sobrancelhas'),
-  g('1552693673-1bf958298935', 'Atendimento facial em ambiente profissional', 'Cuidado facial'),
-  g('1581182800629-7d90925ad072', 'Rosto com pele limpa e iluminada', 'Pele natural'),
+  real('sobrancelha-d', 'Duas fotos de cliente mostrando sobrancelhas com micropigmentação', 'Micropigmentação de sobrancelhas'),
+  real('labial-1', 'Lábios com micropigmentação labial em tom vermelho', 'Micropigmentação labial'),
+  real('sobrancelha-b2', 'Sobrancelhas nas técnicas fio a fio e shadow line', 'Fio a fio & shadow line'),
+  real('labial-4', 'Close-up de lábios com cor uniforme após micropigmentação', 'Efeito batom'),
+  real('labial-3', 'Lábios com contorno definido e cor natural avermelhada', 'Micropigmentação labial'),
+  real('sobrancelha-c', 'Close-up de sobrancelhas com fios bem definidos', 'Detalhe dos fios'),
+]
+
+// ------------------------------------------------------------
+// TURMAS FORMADAS (fotos reais de alunas com certificado)
+// ------------------------------------------------------------
+export const classPhotos = [
+  { src: ig('turma-1'), thumb: ig('turma-1', true), alt: 'Carine Sousa com alunas segurando seus certificados' },
+  { src: ig('turma-4'), thumb: ig('turma-4', true), alt: 'Turma de alunas de jaleco branco com certificados' },
+  { src: ig('turma-3'), thumb: ig('turma-3', true), alt: 'Alunas formadas posando com certificados ao lado da Carine' },
+  { src: ig('turma-2'), thumb: ig('turma-2', true), alt: 'Carine Sousa com aluna segurando o certificado' },
 ]
 
 // ------------------------------------------------------------
